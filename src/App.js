@@ -1,36 +1,63 @@
 import React from 'react';
 import './App.css';
 import {useState} from "react";
-import {Button, Container} from "semantic-ui-react";
+import {Button, Card, Image} from "semantic-ui-react";
+import * as PropTypes from "prop-types";
+
+function Prompt(props) {
+  return null;
+}
+
+Prompt.propTypes = {
+  onClose: PropTypes.func,
+  warning: PropTypes.bool,
+  content: PropTypes.string,
+  open: PropTypes.bool
+};
 
 function App() {
 
   const [characters, setCharacters] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const timestamp = '1675961395';
+  const apiKey = '824b4f2bb67a85e638a19888121bd05a';
+  const hashKey = 'd32f224fb3ad8c01de9db005300f1ef6';
 
   const fetchCharacter = async (searchValue) => {
-    const url= `https://gateway.marvel.com:443/v1/public/characters?name=${searchValue}&ts=1675961395&apikey=824b4f2bb67a85e638a19888121bd05a&hash=d32f224fb3ad8c01de9db005300f1ef6`;
+    try {
+      const url = `https://gateway.marvel.com:443/v1/public/characters?name=${searchValue}&ts=${timestamp}&apikey=${apiKey}&hash=${hashKey}`;
 
-    const response = await fetch(url);
-    const responseJson = await response.json();
+      const response = await fetch(url);
+      const responseJson = await response.json();
 
-    if (responseJson.data.results) {
-      setCharacters(responseJson.data.results);
+      if (responseJson.data && responseJson.data.results && responseJson.data.results.length > 0) {
+        setCharacters(responseJson.data.results);
+        setShowAlert(false);
+      } else {
+        setCharacters([]);
+        setShowAlert(true);
+      }
+    } catch (error) {
+      setErrorMessage('An error has occurred while searching for the character');
+      setCharacters([]);
     }
 
-    console.log(characters)
   }
 
   const handleSearch = () => {
+    setErrorMessage('');
     fetchCharacter(searchValue);
+    setShowAlert(false);
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <div >
+        <div className="ui input" >
           <input
-              className="form-control"
+              type="text"
               value={searchValue}
               onChange={(event) => setSearchValue(event.target.value)}
               placeholder="Type to search..."
@@ -39,28 +66,21 @@ function App() {
             Search
           </Button>
         </div>
+        {showAlert && <div className="message">No results found for the search query.</div>}
+        {errorMessage && <div className="message">{errorMessage}</div>}
           {characters?.map((character, index) => (
-              <Container key={character.id}>
-                  <div>
-                      <div className="ui card">
-                          <div className="content">
-                              <p className="header">{character.name}</p>
-                              <div className="meta">
-                                  <span className="date">Joined in 2013</span>
-                              </div>
-                              <div className="description">
-                                  {character.description}
-                              </div>
-                          </div>
-                          <div className="extra content">
-                              {/*<a>
-                       <i className="user icon"></i>
-                       22 Friends
-                   </a>*/}
-                          </div>
-                      </div>
-                  </div>
-              </Container>
+              <Card key={character.id}>
+                <Image src={character.thumbnail.path + "." + character.thumbnail.extension}/>
+                <Card.Content>
+                  <Card.Header>{character.name}</Card.Header>
+                  <Card.Description>
+                    {character.description}
+                  </Card.Description>
+                </Card.Content>
+                {/*<Card.Content extra>
+
+                </Card.Content>*/}
+              </Card>
           ))
 
           }

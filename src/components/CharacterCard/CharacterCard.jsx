@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react';
 
 function CharacterCard({ character }) {
     return (
-        <Card>
+        <Card className="centered">
             <Image src={character.thumbnail.path + '.' + character.thumbnail.extension} />
             <Card.Content>
                 <Card.Header>{character.name}</Card.Header>

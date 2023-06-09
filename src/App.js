@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {useState} from "react";
-import {Grid} from "semantic-ui-react";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import SearchBar from "./components/SearchBar/SearchBar";
 
@@ -45,10 +44,8 @@ function App() {
 
   return (
       <div className="App">
-
-          <Grid centered>
-
-            <Grid.Column mobile={16} tablet={8} computer={6}>
+          <div className="ui text container">
+            <h1 className="ui dividing header centered"> Marvel Search</h1>
               <SearchBar handleSearch={handleSearch} searchValue={searchValue} setSearchValue={setSearchValue}/>
               {showAlert && <div className="ui info message">No results found for the search query.</div>}
               {errorMessage && <div className="ui info message">{errorMessage}</div>}
@@ -56,8 +53,7 @@ function App() {
                   <CharacterCard character={character}/>
               ))
               }
-            </Grid.Column>
-          </Grid>
+          </div>
       </div>
   );
 }

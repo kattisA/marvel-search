@@ -1,0 +1,16 @@
+#root {
+    height: 100vh; /* Set the height to fill the viewport */
+    background: linear-gradient(to bottom, #e66465, #9198e5);
+    /* Add other styles for the root element */
+}
+
+h1.ui.header {
+    padding: 2rem;
+}
+
+.ui.two.column.centered.grid .ui.button {
+    margin-left: 1rem;
+}
+.ui.input {
+    padding: 1rem;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import {useState} from "react";
-import {Button, Card, Image} from "semantic-ui-react";
+import {Grid} from "semantic-ui-react";
+import CharacterCard from "./components/CharacterCard/CharacterCard";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 
 function App() {
@@ -42,40 +44,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="ui input" >
-          <input
-              type="text"
-              value={searchValue}
-              onChange={(event) => setSearchValue(event.target.value)}
-              placeholder="Type to search..."
-          />
-          <Button onClick={handleSearch} primary>
-            Search
-          </Button>
-        </div>
-        {showAlert && <div className="message">No results found for the search query.</div>}
-        {errorMessage && <div className="message">{errorMessage}</div>}
-          {characters?.map((character, index) => (
-              <Card key={character.id}>
-                <Image src={character.thumbnail.path + "." + character.thumbnail.extension}/>
-                <Card.Content>
-                  <Card.Header>{character.name}</Card.Header>
-                  <Card.Description>
-                    {character.description}
-                  </Card.Description>
-                </Card.Content>
-                {/*<Card.Content extra>
+      <div className="App">
 
-                </Card.Content>*/}
-              </Card>
-          ))
+          <Grid centered>
 
-          }
-
-      </header>
-    </div>
+            <Grid.Column mobile={16} tablet={8} computer={6}>
+              <SearchBar handleSearch={handleSearch} searchValue={searchValue} setSearchValue={setSearchValue}/>
+              {showAlert && <div className="ui info message">No results found for the search query.</div>}
+              {errorMessage && <div className="ui info message">{errorMessage}</div>}
+              {characters?.map((character, index) => (
+                  <CharacterCard character={character}/>
+              ))
+              }
+            </Grid.Column>
+          </Grid>
+      </div>
   );
 }
 

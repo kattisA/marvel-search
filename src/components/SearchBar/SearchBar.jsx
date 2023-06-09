@@ -8,6 +8,7 @@ function SearchBar({ searchValue, setSearchValue, handleSearch }) {
                 <div className="ui input">
                     <input
                         type="text"
+                        aria-label="search bar"
                         value={searchValue}
                         onChange={(event) => setSearchValue(event.target.value)}
                         placeholder="Type to search..."

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {useState} from "react";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import SearchBar from "./components/SearchBar/SearchBar";
+import {Grid} from "semantic-ui-react";
 
 
 function App() {
@@ -11,9 +12,11 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [featuredCharacters, setFeaturedCharacters] = useState([]);
   const timestamp = '1675961395';
   const apiKey = '824b4f2bb67a85e638a19888121bd05a';
   const hashKey = 'd32f224fb3ad8c01de9db005300f1ef6';
+
 
   const fetchCharacter = async (searchValue) => {
     try {
@@ -36,6 +39,27 @@ function App() {
 
   }
 
+  useEffect(() => {
+    const fetchFeaturedCharacters = async () => {
+      try {
+        const featuredHeroes = ['Black Widow', 'Scarlet Witch', 'Hulk', 'Iron Man', 'Abomination (Emil Blonsky)'];
+        const featuredCharacterUrls = featuredHeroes.map(hero =>
+            `https://gateway.marvel.com:443/v1/public/characters?name=${hero}&ts=${timestamp}&apikey=${apiKey}&hash=${hashKey}`
+        );
+
+        const responses = await Promise.all(featuredCharacterUrls.map(url => fetch(url)));
+        const charactersJson = await Promise.all(responses.map(response => response.json()));
+
+        const featuredCharactersData = charactersJson.map(json => json.data.results[0]);
+        setFeaturedCharacters(featuredCharactersData);
+      } catch (error) {
+        console.error('An error occurred while fetching featured characters:', error);
+      }
+    };
+
+    fetchFeaturedCharacters();
+  }, []);
+
   const handleSearch = () => {
     setErrorMessage('');
     fetchCharacter(searchValue);
@@ -44,16 +68,26 @@ function App() {
 
   return (
       <div className="App">
-          <div className="ui text container">
+          <div className="ui text container searchBox" >
             <h1 className="ui dividing header centered"> Marvel Search</h1>
-              <SearchBar handleSearch={handleSearch} searchValue={searchValue} setSearchValue={setSearchValue}/>
-              {showAlert && <div className="ui info message">No results found for the search query.</div>}
-              {errorMessage && <div className="ui info message">{errorMessage}</div>}
-              {characters?.map((character, index) => (
-                  <CharacterCard character={character}/>
-              ))
-              }
+            <SearchBar handleSearch={handleSearch} searchValue={searchValue} setSearchValue={setSearchValue}/>
+            {showAlert && <div className="ui info message">No results found for the search query.</div>}
+            {errorMessage && <div className="ui info message">{errorMessage}</div>}
+            {characters?.map((character, index) => (
+                <CharacterCard character={character}/>
+            ))
+            }
           </div>
+        <div className="featured-heroes">
+          <h2>Featured Heroes</h2>
+          <Grid stackable columns={3}>
+            {featuredCharacters.map((character, index) => (
+                <Grid.Column key={character.id}>
+                  <CharacterCard character={character}/>
+                </Grid.Column>
+            ))}
+          </Grid>
+        </div>
       </div>
   );
 }

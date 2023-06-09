@@ -1,8 +1,8 @@
-#root {
-    height: 100vh; /* Set the height to fill the viewport */
-    background: linear-gradient(to bottom, #e66465, #9198e5);
-    /* Add other styles for the root element */
-}
+/*#root {
+    height: 100%; !* Set the height to fill the viewport *!
+    background: repeating-linear-gradient(to bottom, #d96165, #6693ba);
+    !* Add other styles for the root element *!
+}*/
 
 h1.ui.header {
     padding: 2rem;
@@ -13,4 +13,10 @@ h1.ui.header {
 }
 .ui.input {
     padding: 1rem;
+}
+
+.searchBox {
+    min-height: 500px;
+    border-radius: 10px;
+    background: repeating-linear-gradient(to bottom, #d96165, #6693ba);
 }

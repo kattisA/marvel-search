@@ -9,7 +9,7 @@ function CharacterCard({ character }) {
                 <Card.Header>{character.name}</Card.Header>
                 <Card.Description>{character.description}</Card.Description>
                 {character.urls && (
-                    <a href={character.urls.find(url => url.type === 'comiclink')?.url}>Comic Link</a>
+                    <a href={character.urls.find(url => url.type === 'comiclink')?.url} target="_blank" rel="noreferrer">Comic Link</a>
                 )}
             </Card.Content>
         </Card>

@@ -3,20 +3,46 @@
     background: repeating-linear-gradient(to bottom, #d96165, #6693ba);
     !* Add other styles for the root element *!
 }*/
+.App {
+    margin-top: 2rem;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: repeating-linear-gradient(to bottom, #d96165, #6693ba) !important;
+    /* Add other styles for html and body */
+}
 
-h1.ui.header {
+#root {
+    min-height: 100%;
+    /* Add other styles for the root element */
+}
+
+h2.ui.header {
     padding: 2rem;
 }
 
 .ui.two.column.centered.grid .ui.button {
     margin-left: 1rem;
 }
-.ui.input {
-    padding: 1rem;
+
+.column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.ui.input {
+    width: 100%;
+    max-width: 400px; /* Adjust the value as needed */
+}
+
+
 .searchBox {
-    min-height: 500px;
+    min-height: 600px;
     border-radius: 10px;
-    background: repeating-linear-gradient(to bottom, #d96165, #6693ba);
+    background-color: rgba(200, 200, 200, 0.5);
 }

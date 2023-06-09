@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     const fetchFeaturedCharacters = async () => {
       try {
-        const featuredHeroes = ['Black Widow', 'Scarlet Witch', 'Hulk', 'Iron Man', 'Abomination (Emil Blonsky)'];
+        const featuredHeroes = ['Black Widow', 'Scarlet Witch', 'Mystique', 'Hulk', 'Iron Man', 'Captain America'];
         const featuredCharacterUrls = featuredHeroes.map(hero =>
             `https://gateway.marvel.com:443/v1/public/characters?name=${hero}&ts=${timestamp}&apikey=${apiKey}&hash=${hashKey}`
         );
@@ -68,27 +68,42 @@ function App() {
 
   return (
       <div className="App">
-          <div className="ui text container searchBox" >
-            <h1 className="ui dividing header centered"> Marvel Search</h1>
-            <SearchBar handleSearch={handleSearch} searchValue={searchValue} setSearchValue={setSearchValue}/>
-            {showAlert && <div className="ui info message">No results found for the search query.</div>}
-            {errorMessage && <div className="ui info message">{errorMessage}</div>}
-            {characters?.map((character, index) => (
-                <CharacterCard character={character}/>
-            ))
-            }
+        <div className="ui container">
+          <h1 className="ui dividing header centered">Marvel Search</h1>
+          <div className="ui grid">
+            <div className="eight wide column">
+              <div className="featured-heroes">
+                <h2 className="ui header ">Featured Heroes</h2>
+                <Grid stackable columns={3}>
+                  {featuredCharacters.map((character, index) => (
+                      <Grid.Column key={character.id}>
+                        <CharacterCard character={character} />
+                      </Grid.Column>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+            <div className="eight wide column">
+              <div className="ui container searchBox">
+                <h2 className="ui header ">Search</h2>
+                <SearchBar
+                    handleSearch={handleSearch}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                />
+                {showAlert && (
+                    <div className="ui info message">No results found for the search query.</div>
+                )}
+                {errorMessage && <div className="ui info message">{errorMessage}</div>}
+                {characters?.map((character, index) => (
+                    <CharacterCard character={character} key={character.id} />
+                ))}
+              </div>
+            </div>
           </div>
-        <div className="featured-heroes">
-          <h2>Featured Heroes</h2>
-          <Grid stackable columns={3}>
-            {featuredCharacters.map((character, index) => (
-                <Grid.Column key={character.id}>
-                  <CharacterCard character={character}/>
-                </Grid.Column>
-            ))}
-          </Grid>
         </div>
       </div>
+
   );
 }
 

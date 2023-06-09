@@ -8,6 +8,9 @@ function CharacterCard({ character }) {
             <Card.Content>
                 <Card.Header>{character.name}</Card.Header>
                 <Card.Description>{character.description}</Card.Description>
+                {character.urls && (
+                    <a href={character.urls.find(url => url.type === 'comiclink')?.url}>Comic Link</a>
+                )}
             </Card.Content>
         </Card>
     );

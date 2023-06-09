@@ -2,18 +2,7 @@ import React from 'react';
 import './App.css';
 import {useState} from "react";
 import {Button, Card, Image} from "semantic-ui-react";
-import * as PropTypes from "prop-types";
 
-function Prompt(props) {
-  return null;
-}
-
-Prompt.propTypes = {
-  onClose: PropTypes.func,
-  warning: PropTypes.bool,
-  content: PropTypes.string,
-  open: PropTypes.bool
-};
 
 function App() {
 

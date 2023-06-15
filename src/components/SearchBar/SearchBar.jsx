@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from "semantic-ui-react";
 
 function SearchBar({ searchValue, setSearchValue, handleSearch }) {
+    const [searchMessage, setSearchMessage] = useState(false);
+
+    const onSearchChange = (event) => {
+        const value = event.target.value;
+        setSearchValue(value);
+        setSearchMessage(value !== '');
+    };
+
+    const onSearchButton = () => {
+        setSearchMessage(searchValue !== '');
+        handleSearch();
+    }
+
     return (
         <div className="ui two column centered grid">
             <div className="column">
@@ -10,12 +23,15 @@ function SearchBar({ searchValue, setSearchValue, handleSearch }) {
                         type="text"
                         aria-label="search bar"
                         value={searchValue}
-                        onChange={(event) => setSearchValue(event.target.value)}
+                        onChange={onSearchChange}
                         placeholder="Type to search..."
                     />
-                    <Button className="ui button" onClick={handleSearch}>
+                    <Button className="ui button" onClick={onSearchButton}>
                         Search
                     </Button>
+                </div>
+                <div className="searchMessageBox">
+                    {searchMessage && <p className="searchMessage">Search results for {searchValue}</p>}
                 </div>
             </div>
         </div>

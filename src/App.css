@@ -1,8 +1,3 @@
-/*#root {
-    height: 100%; !* Set the height to fill the viewport *!
-    background: repeating-linear-gradient(to bottom, #d96165, #6693ba);
-    !* Add other styles for the root element *!
-}*/
 .App {
     margin-top: 2rem;
 }
@@ -37,13 +32,21 @@ h2.ui.header {
 
 .ui.input {
     width: 100%;
-    max-width: 400px; /* Adjust the value as needed */
+    max-width: 25rem;
 }
 
 
 .searchBox {
-    min-height: 600px;
-    border-radius: 10px;
+    min-height: 38rem;
+    border-radius: 0.6rem;
     background-color: rgba(200, 200, 200, 0.3);
     padding-bottom: 1rem;
+}
+
+.searchMessageBox {
+    min-height: 1.5rem;
+}
+
+.searchMessage {
+    padding-top: 0.5rem;
 }

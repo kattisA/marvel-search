@@ -6,13 +6,11 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: repeating-linear-gradient(to bottom, #d96165, #6693ba) !important;
-    /* Add other styles for html and body */
+    background: linear-gradient(to right, #6693ba 0%,#6693ba 0%,#d96165 66%,#6693ba 72%,#6693ba 100%) !important;
 }
 
 #root {
     min-height: 100%;
-    /* Add other styles for the root element */
 }
 
 h2.ui.header {

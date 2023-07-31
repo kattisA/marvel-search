@@ -28,39 +28,37 @@ function App() {
       id: 1,
       name: "Scarlet Witch",
       image: scarlet,
-      description: "Scarlet Witch believed she used the ability to affect probabilities for a positive benefit to herself, though at times to imprecise outcomes. Later, she mastered the ability and began to understand it as a literal altering of reality.\n" +
-          "\n" +
-          "In addition, Wanda trained under other magicians and spellcasters to become proficient in magic-use, which manifests from incantations and spells."
+      description: "Scarlet Witch harnessed probability manipulation for personal gain, then mastered reality-altering magic through training."
     },
     {
       id: 2,
       name: "Black Widow",
       image: blackWidow,
-      description: "Despite her origins as an agent of evil, Natasha Romanoff has become a force for good in the world of covert intelligence and super heroics. Like her namesake arachnid, Romanoff is stealthy, precise, and absolutely lethal. She is the Black Widow."
+      description: "Natasha Romanoff, the Black Widow, started as an evil agent but now fights for good with stealth and precision."
     },
     {
       id: 3,
       name: "Mystique",
       image: mystique,
-      description: "A member of a subspecies of humanity known as mutants who are born with superhuman abilities, Mystique is a shapeshifter who can mimic the appearance and voice of any person with exquisite precision. Her natural appearance includes blue skin, red hair and yellow eyes."
+      description: "Mystique is a mutant shapeshifter with blue skin, red hair, and yellow eyes, able to mimic anyone with precision."
     },
     {
       id: 4,
       name: "Ironman",
       image: ironman,
-      description: "Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man."
+      description: "Wounded and captured, Tony Stark builds a life-saving suit of armor, transforming into Iron Man to protect the world."
     },
     {
       id: 5,
       name: "Captain America",
       image: captainAmerica,
-      description: "Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain America is the living, breathing symbol of freedom and liberty."
+      description: "Steve Rogers becomes Captain America after taking a super soldier serum, defending freedom for over 60 years."
     },
     {
       id: 6,
       name: "Hulk",
       image: hulk,
-      description: "Caught in a gamma bomb explosion while trying to save the life of a teenager, Dr. Bruce Banner was transformed into the incredibly powerful creature called the Hulk. An all too often misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets."
+      description: "Dr. Bruce Banner transforms into the Hulk after a gamma bomb explosion, gaining strength with anger."
     },
 
   ]

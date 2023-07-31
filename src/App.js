@@ -4,7 +4,6 @@ import {useState} from "react";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import SearchBar from "./components/SearchBar/SearchBar";
 import {Grid} from "semantic-ui-react";
-import PredefinedSearches from "./components/PredefinedSearches/PredefinedSearches";
 
 
 function App() {
@@ -73,7 +72,7 @@ function App() {
           <h1 className="ui dividing header centered">Marvel Search</h1>
           <div className="ui grid">
             <div className="eight wide column">
-              <div className="backgroundBox">
+              <div className="featured-heroes">
                 <h2 className="ui header ">Featured Heroes</h2>
                 <Grid stackable columns={3}>
                   {featuredCharacters.map((character, index) => (
@@ -85,7 +84,7 @@ function App() {
               </div>
             </div>
             <div className="eight wide column">
-              <div className="ui container searchBox backgroundBox">
+              <div className="ui container searchBox">
                 <h2 className="ui header ">Search</h2>
                 <SearchBar
                     handleSearch={handleSearch}
@@ -99,12 +98,6 @@ function App() {
                 {characters?.map((character, index) => (
                     <CharacterCard character={character} key={character.id} />
                 ))}
-              </div>
-
-              <div className= "ui container">
-                <div className="eight wide column">
-                <PredefinedSearches handleSearch={handleSearch} setSearchValue={setSearchValue} />
-                </div>
               </div>
             </div>
           </div>

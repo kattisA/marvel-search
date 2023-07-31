@@ -1,9 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {useState} from "react";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import SearchBar from "./components/SearchBar/SearchBar";
-import {Grid} from "semantic-ui-react";
+import {Card, Grid, Image} from "semantic-ui-react";
+import blackWidow from "./img/black_widow.jpg";
+import captainAmerica from "./img/captain_america.jpg";
+import hulk from "./img/hulk.jpg";
+import ironman from "./img/ironman.jpg";
+import mystique from "./img/mystique.jpg";
+import scarlet from "./img/scarlet.jpg";
+
 
 
 function App() {
@@ -12,10 +19,51 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  const [featuredCharacters, setFeaturedCharacters] = useState([]);
   const timestamp = '1675961395';
   const apiKey = '824b4f2bb67a85e638a19888121bd05a';
   const hashKey = 'd32f224fb3ad8c01de9db005300f1ef6';
+
+  const heroesList = [
+    {
+      id: 1,
+      name: "Scarlet Witch",
+      image: scarlet,
+      description: "Scarlet Witch believed she used the ability to affect probabilities for a positive benefit to herself, though at times to imprecise outcomes. Later, she mastered the ability and began to understand it as a literal altering of reality.\n" +
+          "\n" +
+          "In addition, Wanda trained under other magicians and spellcasters to become proficient in magic-use, which manifests from incantations and spells."
+    },
+    {
+      id: 2,
+      name: "Black Widow",
+      image: blackWidow,
+      description: "Despite her origins as an agent of evil, Natasha Romanoff has become a force for good in the world of covert intelligence and super heroics. Like her namesake arachnid, Romanoff is stealthy, precise, and absolutely lethal. She is the Black Widow."
+    },
+    {
+      id: 3,
+      name: "Mystique",
+      image: mystique,
+      description: "A member of a subspecies of humanity known as mutants who are born with superhuman abilities, Mystique is a shapeshifter who can mimic the appearance and voice of any person with exquisite precision. Her natural appearance includes blue skin, red hair and yellow eyes."
+    },
+    {
+      id: 4,
+      name: "Ironman",
+      image: ironman,
+      description: "Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man."
+    },
+    {
+      id: 5,
+      name: "Captain America",
+      image: captainAmerica,
+      description: "Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain America is the living, breathing symbol of freedom and liberty."
+    },
+    {
+      id: 6,
+      name: "Hulk",
+      image: hulk,
+      description: "Caught in a gamma bomb explosion while trying to save the life of a teenager, Dr. Bruce Banner was transformed into the incredibly powerful creature called the Hulk. An all too often misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets."
+    },
+
+  ]
 
 
   const fetchCharacter = async (searchValue) => {
@@ -39,27 +87,6 @@ function App() {
 
   }
 
-  useEffect(() => {
-    const fetchFeaturedCharacters = async () => {
-      try {
-        const featuredHeroes = ['Black Widow', 'Scarlet Witch', 'Mystique', 'Hulk', 'Iron Man', 'Captain America'];
-        const featuredCharacterUrls = featuredHeroes.map(hero =>
-            `https://gateway.marvel.com:443/v1/public/characters?name=${hero}&ts=${timestamp}&apikey=${apiKey}&hash=${hashKey}`
-        );
-
-        const responses = await Promise.all(featuredCharacterUrls.map(url => fetch(url)));
-        const charactersJson = await Promise.all(responses.map(response => response.json()));
-
-        const featuredCharactersData = charactersJson.map(json => json.data.results[0]);
-        setFeaturedCharacters(featuredCharactersData);
-      } catch (error) {
-        console.error('An error occurred while fetching featured characters:', error);
-      }
-    };
-
-    fetchFeaturedCharacters();
-  }, []);
-
   const handleSearch = () => {
     setErrorMessage('');
     fetchCharacter(searchValue);
@@ -75,9 +102,15 @@ function App() {
               <div className="featured-heroes">
                 <h2 className="ui header ">Featured Heroes</h2>
                 <Grid stackable columns={3}>
-                  {featuredCharacters.map((character, index) => (
+                  {heroesList.map((character, index) => (
                       <Grid.Column key={character.id}>
-                        <CharacterCard character={character} />
+                        <Card className="centered">
+                          <Image src={character.image} alt={"Thumbnail for " + character.name} />
+                          <Card.Content>
+                            <Card.Header>{character.name}</Card.Header>
+                            <Card.Description>{character.description}</Card.Description>
+                          </Card.Content>
+                        </Card>
                       </Grid.Column>
                   ))}
                 </Grid>

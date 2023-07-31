@@ -95,7 +95,8 @@ function App() {
       <div className="App">
         <div className="ui container">
           <h1 className="ui dividing header centered">Marvel Search</h1>
-          <div className="ui grid">
+          {/*Section for computer and tablet*/}
+          <div className="ui grid computer only tablet only">
             <div className="eight wide column">
               <div className="featured-heroes">
                 <h2 className="ui header ">Featured Heroes</h2>
@@ -129,6 +130,44 @@ function App() {
                 {characters?.map((character, index) => (
                     <CharacterCard character={character} key={character.id} />
                 ))}
+              </div>
+            </div>
+          </div>
+          {/*Section for mobile*/}
+          <div className="ui stackable grid mobile only"> {/* Add "stackable" class to make columns stack on mobile view */}
+            <div className="sixteen wide column"> {/* Make the search box take the full width on mobile view */}
+              <div className="ui container searchBox">
+                <h2 className="ui header ">Search</h2>
+                <SearchBar
+                    handleSearch={handleSearch}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                />
+                {showAlert && (
+                    <div className="ui info message">No results found for the search query.</div>
+                )}
+                {errorMessage && <div className="ui info message">{errorMessage}</div>}
+                {characters?.map((character, index) => (
+                    <CharacterCard character={character} key={character.id} />
+                ))}
+              </div>
+            </div>
+            <div className="sixteen wide column">
+              <div className="featured-heroes">
+                <h2 className="ui header ">Featured Heroes</h2>
+                <Grid stackable columns={3}>
+                  {heroesList.map((character, index) => (
+                      <Grid.Column key={character.id}>
+                        <Card className="centered">
+                          <Image src={character.image} alt={"Thumbnail for " + character.name} />
+                          <Card.Content>
+                            <Card.Header>{character.name}</Card.Header>
+                            <Card.Description>{character.description}</Card.Description>
+                          </Card.Content>
+                        </Card>
+                      </Grid.Column>
+                  ))}
+                </Grid>
               </div>
             </div>
           </div>

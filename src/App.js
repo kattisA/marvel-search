@@ -111,7 +111,7 @@ function App() {
               <div className="featured-heroes">
                 <h2 className="ui header ">Featured Heroes</h2>
                 <Grid stackable columns={3}>
-                  {heroesList.map((character, index) => (
+                  {featuredHeroes.map((character, index) => (
                       <Grid.Column key={character.id}>
                         <Card className="centered">
                           <Image src={character.image} alt={"Thumbnail for " + character.name} />

@@ -7,7 +7,7 @@ With Marvel Search you can easily search into the Marvel APi for the characters 
 ## Description
 
 The application is a React app using Semantic UI. The search app is retrieving information from Marvel API.
-The application is developed for learning purposes.
+The application is developed for learning purposes. The app is mobile friendly.
 During this project I learned more about:
 * Using API:s and more specifically the Marvel API
 * Creating md-5 hash key
@@ -60,5 +60,5 @@ This repository is written by and belongs to Katarina Lejonlid.
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
+Inspiration:
 * [Marvel developer site](https://developer.marvel.com/)

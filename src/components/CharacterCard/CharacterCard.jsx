@@ -1,15 +1,15 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 
-function CharacterCard({ character }) {
+function CharacterCard({ imgSrc, name, description, urls }) {
     return (
         <Card className="centered">
-            <Image src={character.thumbnail.path + '.' + character.thumbnail.extension} alt={"Thumbnail for " + character.name} />
+            <Image src={imgSrc} alt={"Thumbnail for " + {name}} />
             <Card.Content>
-                <Card.Header>{character.name}</Card.Header>
-                <Card.Description>{character.description}</Card.Description>
-                {character.urls && (
-                    <a href={character.urls.find(url => url.type === 'comiclink')?.url} target="_blank" rel="noreferrer">Comic Link</a>
+                <Card.Header>{name}</Card.Header>
+                <Card.Description>{description}</Card.Description>
+                {urls && (
+                    <a href={urls.find(url => url.type === 'comiclink')?.url} target="_blank" rel="noreferrer">Comic Link</a>
                 )}
             </Card.Content>
         </Card>

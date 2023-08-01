@@ -58,13 +58,12 @@ function App() {
                 <Grid stackable columns={3}>
                   {featuredHeroes.map((character, index) => (
                       <Grid.Column key={character.id}>
-                        <Card className="centered">
-                          <Image src={character.image} alt={"Thumbnail for " + character.name} />
-                          <Card.Content>
-                            <Card.Header>{character.name}</Card.Header>
-                            <Card.Description>{character.description}</Card.Description>
-                          </Card.Content>
-                        </Card>
+                        <CharacterCard
+                            key={character.id}
+                            imgSrc={character.image}
+                            name={character.name}
+                            description={character.description}
+                        />
                       </Grid.Column>
                   ))}
                 </Grid>
@@ -83,7 +82,13 @@ function App() {
                 )}
                 {errorMessage && <div className="ui info message">{errorMessage}</div>}
                 {characters?.map((character, index) => (
-                    <CharacterCard character={character} key={character.id} />
+                    <CharacterCard
+                        key={character.id}
+                        imgSrc={character.thumbnail.path + '.' + character.thumbnail.extension}
+                        name={character.name}
+                        description={character.description}
+                        urls={character.urls}
+                    />
                 ))}
               </div>
             </div>
@@ -103,7 +108,13 @@ function App() {
                 )}
                 {errorMessage && <div className="ui info message">{errorMessage}</div>}
                 {characters?.map((character, index) => (
-                    <CharacterCard character={character} key={character.id} />
+                    <CharacterCard
+                        key={character.id}
+                        imgSrc={character.thumbnail.path + '.' + character.thumbnail.extension}
+                        name={character.name}
+                        description={character.description}
+                        urls={character.urls}
+                    />
                 ))}
               </div>
             </div>
@@ -113,13 +124,12 @@ function App() {
                 <Grid stackable columns={3}>
                   {featuredHeroes.map((character, index) => (
                       <Grid.Column key={character.id}>
-                        <Card className="centered">
-                          <Image src={character.image} alt={"Thumbnail for " + character.name} />
-                          <Card.Content>
-                            <Card.Header>{character.name}</Card.Header>
-                            <Card.Description>{character.description}</Card.Description>
-                          </Card.Content>
-                        </Card>
+                        <CharacterCard
+                            key={character.id}
+                            imgSrc={character.image}
+                            name={character.name}
+                            description={character.description}
+                        />
                       </Grid.Column>
                   ))}
                 </Grid>

@@ -126,6 +126,9 @@ function App() {
               </div>
             </div>
           </div>
+          <div className="bottom-link">
+            <a href="https://github.com/kattisA">Created by Kattis</a>
+          </div>
         </div>
       </div>
 

@@ -48,3 +48,18 @@ h2.ui.header {
 .searchMessage {
     padding-top: 0.5rem;
 }
+
+.bottom-link {
+    text-align: center;
+    display: block;
+}
+
+.bottom-link a {
+    font-size: 1.4rem;
+    color: #190e0f;
+    padding: 1rem;
+}
+
+.bottom-link a:hover {
+    color: #64383c;
+}

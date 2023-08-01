@@ -3,7 +3,7 @@ import './App.css';
 import {useState} from "react";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import SearchBar from "./components/SearchBar/SearchBar";
-import {Card, Grid, Image} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import featuredHeroes from "./constants/featuredHeroes";
 
 

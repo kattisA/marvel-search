@@ -17,6 +17,9 @@ During this project I learned more about:
 * React hooks
 * Website accessibility
 
+## Visit
+[The Marvel Search site](https://kattisa.github.io/marvel-search/) is live at Github pages
+
 ## Getting Started
 
 ### Marvel API

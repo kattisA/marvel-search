@@ -1,6 +1,6 @@
 # Marvel Search 
 
-With Marvel Search you can easily search into the Marvel APi for the characters provided by it.
+With Marvel Search you can easily search into the Marvel API for the characters provided by it.
 
 ![Application overview](./src/img/Screenshot_marvel_search.png "Application overview")
 
